@@ -1,24 +1,40 @@
 #include <iostream>
+
 using namespace std;
 
 int main() {
-    int n, m, k, i, s=0, *a;
+
+    int n; // object count
+    int m; // box count
+    int k; // box size
+    int *a; // objects size
+    int i; // loop index (temp variable)
+    int s = 0; //sum size of selected objects for box
+
+    //get inputs
     cin >> n >> m >> k;
     a = new int[n];
     for (i = 0; i < n; i++) {
         cin >> a[i];
     }
-    i=n-1;
-    while(m!=0 && i>-1){
-        if(s+a[i]>k){
+
+    //main logic
+    i = n - 1;
+    while (m != 0 && i > -1) { //while have box and object
+        if (s + a[i] > k) { //can't put object
             m--;
-            s=0;
-        }else{
-            s+=a[i];
+            s = 0;
+        } else { // put object
+            s += a[i];
             i--;
         }
     }
-    cout << n-1-i;
+
+    //print result
+    cout << n - 1 - i << endl;
+
+    //memory cleanup
     delete[] a;
+
     return 0;
 }
